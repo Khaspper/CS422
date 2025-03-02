@@ -1,0 +1,62 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.decomposition import PCA
+
+sns.set()
+
+mnist = pd.read_csv("MNIST_100.csv")
+
+# Reset the index of the dataframe
+mnist = mnist.iloc[1:].reset_index(drop=True)
+
+# Check the updated dataframe
+# mnist_data_cleaned = mnist_data_cleaned.apply(pd.to_numeric)
+# print(mnist.head())
+
+housing = pd.read_csv("housing_training.csv", header=None)
+
+# Stroing the A column in a different variable
+housing_A = housing.iloc[:, 0]
+
+housing = housing.iloc[:, [10, 12, 13]]
+
+# Renaming the column names
+housing.columns = ["K", "M", "N"]
+
+housing_A.columns = "A"
+
+# Get the features
+labels = mnist[mnist.columns[0]]
+pixels = mnist[mnist.columns[0:]]
+print(pixels)
+
+mnist_pca = PCA(n_components=2)
+mnist_pca_2d = mnist_pca.fit_transform(pixels)
+
+
+# Plotting section
+graph = plt.scatter(mnist_pca_2d[:, 0], mnist_pca_2d[:, 1], c=labels, cmap='tab10', marker='p', alpha=.6)
+plt.colorbar(graph, ticks=range(10), label="Digit Label")
+plt.title("PCA Visualization of MNIST Data (2D Projection)")
+plt.title("MNIST Dataset Visualization using PCA")
+plt.xlabel("Principal Component 1")
+plt.ylabel("Principal Component 2")
+plt.show()
+
+housing_Labels = housing.columns.tolist()
+# print(housing_Labels)
+
+housing_pca = PCA(n_components=2)
+housing_pca_2d = housing_pca.fit_transform(pixels)
+
+sns.violinplot(data=housing)
+plt.title("Violin Plot of K, M and N")
+plt.xlabel("Columns")
+plt.ylabel("Values")
+plt.show()
+
+plt.hist(housing_A, bins=20, edgecolor="black")
+plt.title("Histogram of Housing A")
+plt.xlim(0, 4)
+plt.show()
