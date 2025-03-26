@@ -1,0 +1,33 @@
+mpg
+  Target variable: Miles Per Gallon how fuel efficient the car is
+
+cylinders (This could be a selected feature)
+  Number of cylinders in the engine More cylinders = usually more power less fule efficiency
+
+displacement
+  Basically the volume of the engine... bigger = more gas-guzzling
+
+horsepower (This could be a selected feature)
+  How powerful the engine is more horsepower = more acceleration less mpg
+
+weight (This could be a selected feature)
+  Car's weight in pounds heavier cars usually burn more fuel
+
+acceleration
+  Time it takes to go from 0 to 60 mph lower value means faster acceleration
+
+model_year
+  The year the car was manufactured (70 = 1970) Can reflect changes in tech and regulations
+
+origin (This could be a selected feature)
+
+  The region the car comes from, encoded as:
+
+  1 = USA
+
+  2 = Europe
+
+  3 = Japan
+
+car_name
+  name of the car
